@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 @RequiredArgsConstructor
-public class ResponseAspect(
+class ResponseAspect(
     private val response : HttpServletResponse
 ) {
     @Around("""

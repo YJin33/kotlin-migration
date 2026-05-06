@@ -97,8 +97,8 @@ class CustomAuthenticationFilter(
 
             if (payload != null) {
                 val id = payload["id"] as Int
-                val username = payload["username"] as String?
-                val nickname = payload["nickname"] as String?
+                val username = payload["username"] as String
+                val nickname = payload["nickname"] as String
 
                 member = Member(id, username, nickname)
                 isAccessTokenValid = true
