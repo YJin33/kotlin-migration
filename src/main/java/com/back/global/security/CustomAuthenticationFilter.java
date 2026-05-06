@@ -39,7 +39,7 @@ public class CustomAuthenticationFilter extends OncePerRequestFilter {
             RsData<Void> rsData = e.getRsData();
 
             response.setContentType("application/json");
-            response.setStatus(rsData.getStatusCode());
+            response.setStatus(rsData.statusCode());
             response.getWriter().write("""
                     {
                         "resultCode": "%s",
