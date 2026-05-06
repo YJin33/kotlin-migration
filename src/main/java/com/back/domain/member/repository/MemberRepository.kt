@@ -2,10 +2,8 @@ package com.back.domain.member.repository;
 
 import com.back.domain.member.entity.Member
 import org.springframework.data.jpa.repository.JpaRepository
-import java.util.*
 
 interface MemberRepository : JpaRepository<Member, Int> {
-    //Todo: Optional 제거
-    fun findByUsername(username: String): Optional<Member>
-    fun findByApiKey(apiKey: String):Optional<Member>
+    fun findByUsername(username: String): Member?
+    fun findByApiKey(apiKey: String): Member?
 }

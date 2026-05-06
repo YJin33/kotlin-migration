@@ -4,10 +4,10 @@ import com.back.domain.member.entity.Member
 import com.back.domain.member.repository.MemberRepository
 import com.back.global.exception.ServiceException
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import java.util.*
-import java.util.function.Consumer
 
 @Service
 class MemberService(
@@ -21,8 +21,8 @@ class MemberService(
     fun join(
         username: String, password: String, nickname: String, apiKey: String = UUID.randomUUID().toString()
     ): Member {
-        findByUsername(username).ifPresent {
-            Consumer{ m: Member -> throw ServiceException("409-1", "이미 사용중인 아이디입니다.") }
+        findByUsername(username)?.let {
+            throw ServiceException("409-1", "이미 사용중인 아이디입니다.")
         }
         val member: Member = Member(username, passwordEncoder.encode(password)!!, nickname, apiKey)
         return memberRepository.save<Member>(member)
@@ -32,11 +32,11 @@ class MemberService(
         return memberRepository.count()
     }
 
-    fun findByUsername(username: String) : Optional<Member>{
+    fun findByUsername(username: String) : Member?{
         return memberRepository.findByUsername(username)
     }
 
-    fun findByApiKey(apiKey: String): Optional<Member> {
+    fun findByApiKey(apiKey: String): Member? {
         return memberRepository.findByApiKey(apiKey)
     }
 
@@ -48,8 +48,8 @@ class MemberService(
         return authTokenService.payloadOrNull(jwt)
     }
 
-    fun findById(id: Int): Optional<Member>{
-        return memberRepository.findById(id)
+    fun findById(id: Int): Member?{
+        return memberRepository.findByIdOrNull(id)
     }
 
     fun findAll(): List<Member> {

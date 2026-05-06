@@ -4,6 +4,7 @@ import com.back.domain.member.dto.MemberDto
 import com.back.domain.member.entity.Member
 import com.back.domain.member.service.MemberService
 import com.back.global.exception.ServiceException
+import com.back.global.extensions.getOrThrow
 import com.back.global.rq.Rq
 import com.back.global.rsData.RsData
 import jakarta.validation.Valid
@@ -53,9 +54,9 @@ public class ApiV1MemberController(
     @PostMapping("/login")
     fun login(@RequestBody @Valid reqBody: @Valid MemberLoginReqBody): RsData<MemberLoginResBody> {
 
-        val actor: Member = memberService.findByUsername(reqBody.username).orElseThrow(
-            { ServiceException("401-1", "존재하지 않는 아이디입니다.") }
-        )
+        val actor: Member = memberService.findByUsername(reqBody.username)
+            ?:throw ServiceException("401-1", "존재하지 않는 아이디입니다.")
+
 
         memberService.checkPassword(reqBody.password, actor.password);
 
@@ -93,7 +94,7 @@ public class ApiV1MemberController(
         val tmpActor: Member  = rq.actor // user1 정보
 
         // 내 전체 회원 정보 조회가 목적
-        val realActor: Member = memberService.findById(tmpActor.id).get();
+        val realActor: Member = memberService.findById(tmpActor.id).getOrThrow();
 
         return MemberDto(realActor);
 

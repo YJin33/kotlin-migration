@@ -4,6 +4,7 @@ import com.back.domain.member.entity.Member
 import com.back.domain.post.post.dto.PostDto
 import com.back.domain.post.post.entity.Post
 import com.back.domain.post.post.service.PostService
+import com.back.global.extensions.getOrThrow
 import com.back.global.rq.Rq
 import com.back.global.rsData.RsData
 import io.swagger.v3.oas.annotations.Operation
@@ -41,7 +42,7 @@ class ApiV1PostController(
     @Operation(summary = "글 단건 조회")
     fun detail(@PathVariable id: Int): PostDto {
 
-        val post: Post = postService.findById(id).get();
+        val post: Post = postService.findById(id).getOrThrow();
         return PostDto(post);
     }
 
@@ -99,7 +100,7 @@ class ApiV1PostController(
 
         val actor: Member = rq.actor // 인증된 사용자 정보 가져오기
 
-        val post: Post = postService.findById(id).get()
+        val post: Post = postService.findById(id).getOrThrow()
         post.checkModify(actor);
 
         postService.modify(id, reqBody.title, reqBody.content)
@@ -122,7 +123,7 @@ class ApiV1PostController(
 
         val actor: Member = rq.actor // 인증된 사용자 정보 가져오기
 
-        val post: Post = postService.findById(id).get()
+        val post: Post = postService.findById(id).getOrThrow()
         println(post.author.id)
         post.checkDelete(actor)
 

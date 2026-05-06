@@ -4,9 +4,9 @@ import com.back.domain.member.entity.Member
 import com.back.domain.post.post.entity.Post
 import com.back.domain.post.post.repository.PostRepository
 import lombok.RequiredArgsConstructor
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.*
 
 @Service
 @RequiredArgsConstructor
@@ -28,10 +28,8 @@ class PostService(
     fun deleteById(id: Int) =
         postRepository.deleteById(id)
 
-
-    //Todo Optional 제거
-    fun findById(id: Int): Optional<Post> =
-        postRepository.findById(id)
+    fun findById(id: Int): Post? =
+        postRepository.findByIdOrNull(id)
 
     fun count(): Long =
         postRepository.count()
