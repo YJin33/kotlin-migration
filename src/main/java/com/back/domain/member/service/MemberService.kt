@@ -34,7 +34,7 @@ class MemberService(
         return memberRepository.count()
     }
 
-    fun findByUsername(username: String) : Optional<Member?>{
+    fun findByUsername(username: String) : Optional<Member>{
         return memberRepository.findByUsername(username)
     }
 
