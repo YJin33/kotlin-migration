@@ -5,13 +5,9 @@ import com.back.domain.post.comment.entity.Comment
 import com.back.global.entity.BaseEntity
 import com.back.global.exception.ServiceException
 import jakarta.persistence.*
-import lombok.AllArgsConstructor
-import lombok.NoArgsConstructor
 import java.util.*
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 class Post(
     @ManyToOne(fetch = FetchType.LAZY) var author: Member,
     var title: String,

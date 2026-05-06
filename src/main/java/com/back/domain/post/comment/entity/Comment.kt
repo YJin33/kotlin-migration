@@ -6,12 +6,8 @@ import com.back.global.entity.BaseEntity
 import com.back.global.exception.ServiceException
 import jakarta.persistence.Entity
 import jakarta.persistence.ManyToOne
-import lombok.AllArgsConstructor
-import lombok.NoArgsConstructor
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 class Comment (
     @ManyToOne
     var author: Member,

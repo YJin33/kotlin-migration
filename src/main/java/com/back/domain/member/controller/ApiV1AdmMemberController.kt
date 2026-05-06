@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api/v1/adm/members")
 class ApiV1AdmMemberController(
     private val memberService: MemberService,

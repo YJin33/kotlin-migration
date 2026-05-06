@@ -4,7 +4,6 @@ import com.back.domain.member.entity.Member
 import com.back.domain.member.service.MemberService
 import com.back.domain.post.post.entity.Post
 import com.back.domain.post.post.service.PostService
-import lombok.RequiredArgsConstructor
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
@@ -14,7 +13,6 @@ import org.springframework.context.annotation.Lazy
 import org.springframework.transaction.annotation.Transactional
 
 @Configuration
-@RequiredArgsConstructor
 class BaseInitData (
     @Lazy @Autowired
     private val self: BaseInitData?, //? IDE 권장으로 추가함

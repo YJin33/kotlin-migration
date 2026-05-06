@@ -1,13 +1,12 @@
 package com.back.global.security;
 
-import com.back.domain.member.entity.Member;
-import com.back.domain.member.service.MemberService;
-import com.back.global.exception.ServiceException;
-import com.back.global.rq.Rq;
+import com.back.domain.member.entity.Member
+import com.back.domain.member.service.MemberService
+import com.back.global.exception.ServiceException
+import com.back.global.rq.Rq
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
-import lombok.RequiredArgsConstructor
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
 
 @Component
-@RequiredArgsConstructor
 class CustomAuthenticationFilter(
     private val memberService: MemberService,
     private val rq: Rq

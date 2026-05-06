@@ -1,16 +1,14 @@
 package com.back.global.aspect;
 
-import com.back.global.rsData.RsData;
-import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.springframework.stereotype.Component;
+import com.back.global.rsData.RsData
+import jakarta.servlet.http.HttpServletResponse
+import org.aspectj.lang.ProceedingJoinPoint
+import org.aspectj.lang.annotation.Around
+import org.aspectj.lang.annotation.Aspect
+import org.springframework.stereotype.Component
 
 @Aspect
 @Component
-@RequiredArgsConstructor
 class ResponseAspect(
     private val response : HttpServletResponse
 ) {

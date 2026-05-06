@@ -12,14 +12,12 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size
-import lombok.RequiredArgsConstructor
 import org.springframework.http.MediaType
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
 
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api/v1/posts")
 @Tag(name = "ApiV1PostController", description = "글 API, 인증의 경우 헤더가 쿠키보다 우선한다.")
 @SecurityRequirement(name = "bearerAuth")

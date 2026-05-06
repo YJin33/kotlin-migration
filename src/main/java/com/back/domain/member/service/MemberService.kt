@@ -3,7 +3,6 @@ package com.back.domain.member.service;
 import com.back.domain.member.entity.Member
 import com.back.domain.member.repository.MemberRepository
 import com.back.global.exception.ServiceException
-import lombok.RequiredArgsConstructor
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -11,7 +10,6 @@ import java.util.*
 import java.util.function.Consumer
 
 @Service
-@RequiredArgsConstructor
 class MemberService(
 
     private val memberRepository: MemberRepository,
