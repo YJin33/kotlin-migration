@@ -4,8 +4,8 @@ import com.back.domain.member.entity.Member
 import com.back.domain.post.comment.entity.Comment
 import com.back.global.entity.BaseEntity
 import com.back.global.exception.ServiceException
+import com.back.global.extensions.getOrThrow
 import jakarta.persistence.*
-import java.util.*
 
 @Entity
 class Post(
@@ -38,20 +38,21 @@ class Post(
     }
 
     // 댓글 조회
-   fun findCommentById(commentId:Int) : Optional<Comment> {
+   fun findCommentById(commentId:Int) : Comment? {
         return comments.stream()
             .filter { c : Comment? -> c!!.id == commentId }
             .findFirst()
+            .orElse(null)
     }
 
     // 댓글 삭제
     fun deleteComment(id: Int){
-        val comment: Comment  = findCommentById(id).get()
+        val comment: Comment  = findCommentById(id).getOrThrow()
         comments.remove(comment)
     }
 
     fun modifyComment(commentId: Int, content: String) {
-        val comment: Comment = findCommentById(commentId).get()
+        val comment: Comment = findCommentById(commentId).getOrThrow()
         comment.update(content)
     }
 

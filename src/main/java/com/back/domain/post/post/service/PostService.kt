@@ -15,13 +15,13 @@ class PostService(
 ) {
     @Transactional
     fun write(author: Member, title: String, content: String): Post {
-        val post: Post = Post(author, title, content);
-        return postRepository.save(post);
+        val post: Post = Post(author, title, content)
+        return postRepository.save(post)
     }
 
     fun modify(id: Int, title: String, content: String): Post{
-        val post: Post = postRepository.findById(id).get();
-        post.update(title, content);
+        val post: Post = postRepository.findById(id).get()
+        post.update(title, content)
 
         return post
     }

@@ -39,7 +39,7 @@ class ApiV1CommentController(
     @Operation(summary = "글 단건 조회")
     fun detail(@PathVariable postId: Int, @PathVariable commentId: Int): CommentDto {
         val post = postService.findById(postId).getOrThrow()
-        val comment = post.findCommentById(commentId).get()
+        val comment = post.findCommentById(commentId).getOrThrow()
 
         return CommentDto(comment)
     }
@@ -91,7 +91,7 @@ class ApiV1CommentController(
         val actor = rq.actor
 
         val post = postService.findById(postId).getOrThrow()
-        val comment = post.findCommentById(commentId).get()
+        val comment = post.findCommentById(commentId).getOrThrow()
         comment.checkActorDelete(actor)
 
         post.deleteComment(commentId)
@@ -118,7 +118,7 @@ class ApiV1CommentController(
         val actor = rq.actor
 
         val post = postService.findById(postId).getOrThrow()
-        val comment = post.findCommentById(commentId).get()
+        val comment = post.findCommentById(commentId).getOrThrow()
         comment.checkActorModify(actor)
 
         post.modifyComment(commentId, reqBody.content)
