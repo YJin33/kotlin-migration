@@ -6,7 +6,6 @@ import com.back.global.entity.BaseEntity;
 import com.back.global.exception.ServiceException;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Entity
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Post extends BaseEntity {
@@ -79,5 +77,21 @@ public class Post extends BaseEntity {
         if(actor.getId() != this.getAuthor().getId()) {
             throw new ServiceException("403-2", "삭제 권한이 없습니다.");
         }
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public Member getAuthor() {
+        return author;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
     }
 }
