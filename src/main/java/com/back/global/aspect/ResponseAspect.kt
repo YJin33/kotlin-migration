@@ -11,10 +11,9 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 @RequiredArgsConstructor
-public class ResponseAspect {
-
-    private final HttpServletResponse response;
-
+public class ResponseAspect(
+    private val response : HttpServletResponse
+) {
     @Around("""
             (
                 within
@@ -35,20 +34,21 @@ public class ResponseAspect {
             ||
             @annotation(org.springframework.web.bind.annotation.ResponseBody)
             """)
-    public Object responseAspect(ProceedingJoinPoint joinPoint) throws Throwable {
 
+    @Throws(Throwable::class)
+    fun responseAspect(joinPoint: ProceedingJoinPoint) :Any? {
 
-        System.out.println("ResponseAspec 전처리");
+        println("ResponseAspec 전처리")
 
-        Object rst = joinPoint.proceed(); // 실제 수행 메서드
+        val rst: Any = joinPoint.proceed() // 실제 수행 메서드
 
-        System.out.println("ResponseAspec 후처리");
-        if(rst instanceof RsData rsData) {
-            int statusCode = rsData.statusCode();
-            response.setStatus(statusCode);
+        println("ResponseAspec 후처리")
+        if(rst is RsData<*>) {
+            val statusCode:Int = rst.statusCode
+            response.status = rst.statusCode
         }
 
-        return rst;
+        return rst
     }
 
 }
