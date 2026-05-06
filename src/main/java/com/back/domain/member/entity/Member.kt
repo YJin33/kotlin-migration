@@ -23,7 +23,7 @@ class Member(
     }
 
     val name: String
-        get() = this.username
+        get() = this.nickname
 
     val isAdmin: Boolean
         get() = "admin" == username

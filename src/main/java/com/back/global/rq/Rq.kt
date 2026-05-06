@@ -31,7 +31,7 @@ import org.springframework.stereotype.Component
     fun getHeader(name:String, defaultValue:String): String? = request.getHeader(name)?:defaultValue
 
     fun getCookieValue(name: String, defaultValue:String) :String
-        = request.cookies.firstOrNull{it.name == name}?.value //찾는 이름과 같은 이름이 있다면
+        = request.cookies?.firstOrNull{it.name == name}?.value //찾는 이름과 같은 이름이 있다면
             ?.takeIf { it.isNotBlank() } //그게 빈 게 아니라면 take
             ?:defaultValue
 

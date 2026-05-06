@@ -12,6 +12,7 @@ import javax.crypto.SecretKey
 
 object Ut {
     object jwt {
+
          fun toString(secret: String, expireSeconds: Long, body: Map<String, Any>): String {
             val claimsBuilder: ClaimsBuilder = Jwts.claims()
 
@@ -35,6 +36,7 @@ object Ut {
             return jwt
         }
 
+        @JvmStatic
         fun isValid(jwt: String, secret: String): Boolean {
 
             val keyBytes = secret.toByteArray(StandardCharsets.UTF_8);
