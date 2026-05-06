@@ -45,7 +45,6 @@ class ApiV1PostController(
         return PostDto(post);
     }
 
-    @JvmRecord
     data class PostWriteReqBody(
             val title: @Size(min = 2, max = 10, message = "03-title-제목은 2자 이상 10자 이하로 입력해주세요.")
             @NotBlank(message = "01-title-제목은 필수입니다.") String,
@@ -54,7 +53,6 @@ class ApiV1PostController(
             @Size(min = 2, max = 100, message = "04-content-내용은 2자 이상 100자 이하로 입력해주세요.") String
     )
 
-    @JvmRecord
     data class PostWriteResBody(
             val postDto: PostDto
     )
@@ -78,8 +76,6 @@ class ApiV1PostController(
         )
     }
 
-
-    @JvmRecord
     data class PostModifyReqBody(
         val title: @Size(min = 2, max = 10, message = "03-title-제목은 2자 이상 10자 이하로 입력해주세요.")
         @NotBlank(message = "01-title-제목은 필수입니다.")
@@ -90,7 +86,6 @@ class ApiV1PostController(
         String
     )
 
-    @JvmRecord
     data class PostModifyResBody(
             val postDto: PostDto
     )

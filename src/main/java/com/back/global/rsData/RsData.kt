@@ -2,7 +2,6 @@ package com.back.global.rsData;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@JvmRecord
 data class RsData<T>(
     val msg: String?,
     val resultCode: String?,

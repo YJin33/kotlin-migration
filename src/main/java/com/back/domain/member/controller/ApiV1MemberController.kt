@@ -18,18 +18,14 @@ public class ApiV1MemberController(
     private val rq: Rq,
 //    private val response: HttpServletResponse
 ){
-    @JvmRecord
     data class MemberJoinReqBody(
         @field:NotBlank @field:Size(min = 2, max = 30) val username: String,
         @field:NotBlank @field:Size(min = 2, max = 30) val password: String,
         @field:NotBlank @field:Size(min = 2, max = 30) val nickname: String
-    ) {
-    }
-    @JvmRecord
+    )
     data class MemberJoinResBody(
             val memberDto: MemberDto
-    ) {
-    }
+    )
 
     @PostMapping("/join")
     fun join(@RequestBody @Valid reqBody: @Valid MemberJoinReqBody): RsData<MemberJoinResBody> {
@@ -44,13 +40,11 @@ public class ApiV1MemberController(
                 )
         )
     }
-    @JvmRecord
     data class MemberLoginReqBody(
         @field:NotBlank @field:Size(min = 2, max = 30) val username: String,
         @field:NotBlank @field:Size(min = 2, max = 30) val password: String
     )
 
-    @JvmRecord
     data class MemberLoginResBody(
         val apiKey: String,
         val accessToken: String
