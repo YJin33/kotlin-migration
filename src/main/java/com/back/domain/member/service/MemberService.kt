@@ -38,7 +38,7 @@ class MemberService(
         return memberRepository.findByUsername(username)
     }
 
-    fun findByApiKey(apiKey: String): Optional<Member?> {
+    fun findByApiKey(apiKey: String): Optional<Member> {
         return memberRepository.findByApiKey(apiKey)
     }
 
